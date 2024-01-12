@@ -1,40 +1,29 @@
-package br.com.rem_aya_2.model;
+package br.com.rem_aya_2.data_vo_v1;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Table(name = "plant")
-public class Plant implements Serializable {
+public class PlantVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(name = "name", nullable = false, length = 100)
+	@JsonProperty("id")
+	private Long key;
 	private String name;
-	@Column(name = "planted_date", nullable = false)	
 	private Date plantedDate;
-	@Column(name = "in_house", nullable = false)
 	private Boolean inHouse;
 	
-	public Plant() {}
+	public PlantVO() {}
 	
-	public Long getId() {
-		return id;
+	public Long getKey() {
+		return key;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setKey(Long key) {
+		this.key = key;
 	}
 	
 	public String getName() {
@@ -63,7 +52,7 @@ public class Plant implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, inHouse, name, plantedDate);
+		return Objects.hash(inHouse, key, name, plantedDate);
 	}
 
 	@Override
@@ -74,8 +63,8 @@ public class Plant implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Plant other = (Plant) obj;
-		return Objects.equals(id, other.id) && Objects.equals(inHouse, other.inHouse)
+		PlantVO other = (PlantVO) obj;
+		return Objects.equals(inHouse, other.inHouse) && Objects.equals(key, other.key)
 				&& Objects.equals(name, other.name) && Objects.equals(plantedDate, other.plantedDate);
 	}
 }
