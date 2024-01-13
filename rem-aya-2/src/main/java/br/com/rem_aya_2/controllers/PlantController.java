@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.rem_aya_2.model.Plant;
+import br.com.rem_aya_2.data_vo_v1.PlantVO;
 import br.com.rem_aya_2.services.PlantService;
-import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/plant")
@@ -26,25 +25,25 @@ public class PlantController {
 	PlantService service;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Plant> findAll(){
+	public List<PlantVO> findAll(){
 		return service.findAll();
 	}
 	
 	@GetMapping(value = "/{id}",
 				produces = MediaType.APPLICATION_JSON_VALUE)
-	public Plant findById(@PathVariable(value = "id") Long id) {
+	public PlantVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
 				 consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Plant createPlant(@RequestBody Plant plant) {
+	public PlantVO create(@RequestBody PlantVO plant) {
 		return service.create(plant);
 	}
 	
 	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
 			 	consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Plant updatePlant(@RequestBody Plant plant) {
+	public PlantVO update(@RequestBody PlantVO plant) {
 		return service.update(plant);
 	}
 	

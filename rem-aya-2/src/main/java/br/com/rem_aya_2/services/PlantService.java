@@ -6,7 +6,9 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.rem_aya_2.data_vo_v1.PlantVO;
 import br.com.rem_aya_2.exceptions.ResourceNotFoundException;
+import br.com.rem_aya_2.mapper.Mapper;
 import br.com.rem_aya_2.model.Plant;
 import br.com.rem_aya_2.repositories.PlantRepository;
 
@@ -18,39 +20,48 @@ public class PlantService {
 	
 	private Logger logger = Logger.getLogger(PlantService.class.getName());
 	
-	public List<Plant> findAll(){
+	public List<PlantVO> findAll(){
 		
 		logger.info("Finding all Plants!");
 		
-		return repository.findAll();
+		return Mapper.parseObjectsList(repository.findAll(), PlantVO.class);
 	}
 
-	public Plant findById(Long id) {
+	public PlantVO findById(Long id) {
 		
 		logger.info("Finding a Plant!");
 		
-		return repository.findById(id)
+		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
+		
+		return Mapper.parseObject(entity, PlantVO.class);
 	}
 	
-	public Plant create(Plant plant) {
+	public PlantVO create(PlantVO plant) {
 		
 		logger.info("Creating a Plant!");
 		
-		return repository.save(plant);
+		var entity = Mapper.parseObject(plant, Plant.class);
+		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
+		
+		return vo;
 	}
 	
-	public Plant update(Plant plant) {
+	public PlantVO update(PlantVO plant) {
 		
 		logger.info("Updating a Plant!");
 		
-		var entity = repository.findById(plant.getId())
+		var entity = repository.findById(plant.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		entity.setName(plant.getName());
 		entity.setPlantedDate(plant.getPlantedDate());
 		entity.setInHouse(plant.getInHouse());
 		
-		return repository.save(entity);
+		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
+		
+		return vo;
+		
+		
 	}
 	
 	public void delete(Long id) {
