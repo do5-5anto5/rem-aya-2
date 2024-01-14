@@ -5,15 +5,21 @@ import java.util.Date;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder({"id", "name", "planted_date", "in_house"})
 public class PlantVO implements Serializable {
+	
 	
 	private static final long serialVersionUID = 1L;
 	
 	@JsonProperty("id")
 	private Long key;
+	@JsonProperty("name")
 	private String name;
+	@JsonProperty("planted_date")
 	private Date plantedDate;
+	@JsonProperty("in_house")
 	private Boolean inHouse;
 	
 	public PlantVO() {}
