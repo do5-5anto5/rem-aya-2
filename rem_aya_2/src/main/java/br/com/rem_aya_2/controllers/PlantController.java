@@ -18,7 +18,7 @@ import br.com.rem_aya_2.data_vo_v1.PlantVO;
 import br.com.rem_aya_2.services.PlantService;
 
 @RestController
-@RequestMapping("/plant")
+@RequestMapping("api/plant/v1")
 public class PlantController {
 
 	@Autowired
