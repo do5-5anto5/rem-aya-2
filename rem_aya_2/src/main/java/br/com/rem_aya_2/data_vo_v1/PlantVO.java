@@ -4,24 +4,22 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"id", "name", "planted_date", "in_house", "address"})
-public class PlantVO implements Serializable {
+@JsonPropertyOrder({"id", "name", "plantedDate", "inHouse", "address"})
+public class PlantVO extends RepresentationModel<PlantVO> implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
 	
 	@JsonProperty("id")
 	private Long key;
-	@JsonProperty("name")
 	private String name;
-	@JsonProperty("planted_date")
 	private Date plantedDate;
-	@JsonProperty("in_house")
 	private Boolean inHouse;
-	@JsonProperty("address")
 	private String address;
 	
 	public PlantVO() {}
@@ -68,14 +66,17 @@ public class PlantVO implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, inHouse, key, name, plantedDate);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(address, inHouse, key, name, plantedDate);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;

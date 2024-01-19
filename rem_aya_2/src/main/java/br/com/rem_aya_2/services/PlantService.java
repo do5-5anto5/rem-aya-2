@@ -5,7 +5,10 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import br.com.rem_aya_2.controllers.PlantController;
 import br.com.rem_aya_2.data_vo_v1.PlantVO;
 import br.com.rem_aya_2.exceptions.ResourceNotFoundException;
 import br.com.rem_aya_2.mapper.Mapper;
@@ -24,7 +27,11 @@ public class PlantService {
 		
 		logger.info("Finding all Plants!");
 		
-		return Mapper.parseObjectsList(repository.findAll(), PlantVO.class);
+		var plants = Mapper.parseObjectsList(repository.findAll(), PlantVO.class);
+		plants.stream().forEach(p ->
+		p.add(linkTo(methodOn(PlantController.class).findById(p.getKey())).withSelfRel()));
+		
+		return plants;
 	}
 
 	public PlantVO findById(Long id) {
@@ -34,7 +41,9 @@ public class PlantService {
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
-		return Mapper.parseObject(entity, PlantVO.class);
+		var vo = Mapper.parseObject(entity, PlantVO.class);
+		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		return vo;
 	}
 	
 	public PlantVO create(PlantVO plant) {
@@ -43,6 +52,7 @@ public class PlantService {
 		
 		var entity = Mapper.parseObject(plant, Plant.class);
 		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
+		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
 		
 		return vo;
 	}
@@ -58,6 +68,7 @@ public class PlantService {
 		entity.setInHouse(plant.getInHouse());
 		
 		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
+		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
 		
 		return vo;
 		
