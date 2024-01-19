@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS `plant` (
   `in_house` bit(1) NOT NULL,
   `name` varchar(100) NOT NULL,
   `planted_date` datetime(6) NOT NULL,
+  `address` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 );

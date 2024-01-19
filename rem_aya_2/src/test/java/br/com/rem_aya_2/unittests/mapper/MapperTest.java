@@ -27,6 +27,7 @@ public class MapperTest {
 		assertEquals(Long.valueOf(0L), output.getKey());
 		assertEquals("Name Test0", output.getName());
 		assertEquals(false, output.getInHouse());
+		assertEquals("Address Test0", output.getAddress());
 		assertNotNull(output.getPlantedDate());
 	}
 	
@@ -38,18 +39,21 @@ public class MapperTest {
 		assertEquals(Long.valueOf(0L), output0.getKey());
 		assertEquals("Name Test0", output0.getName());
 		assertEquals(false, output0.getInHouse());
+		assertEquals("Address Test0", output0.getAddress());
 		assertNotNull(output0.getPlantedDate());
 		
 		var output7 = outputList.get(7);
 		assertEquals(Long.valueOf(7L), output7.getKey());
 		assertEquals("Name Test7", output7.getName());
 		assertEquals(false, output7.getInHouse());
+		assertEquals("Address Test7", output7.getAddress());
 		assertNotNull(output7.getPlantedDate());
 		
 		var output13 = outputList.get(13);
 		assertEquals(Long.valueOf(13L), output13.getKey());
 		assertEquals("Name Test13", output13.getName());
 		assertEquals(false, output13.getInHouse());
+		assertEquals("Address Test13", output13.getAddress());
 		assertNotNull(output13.getPlantedDate());
 	}
 	

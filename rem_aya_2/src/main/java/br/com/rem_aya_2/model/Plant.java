@@ -26,6 +26,8 @@ public class Plant implements Serializable {
 	private Date plantedDate;
 	@Column(name = "in_house", nullable = false)
 	private Boolean inHouse;
+	@Column(name = "address", nullable = false)
+	private String address;
 	
 	public Plant() {}
 	
@@ -60,10 +62,18 @@ public class Plant implements Serializable {
 	public void setInHouse(Boolean inHouse) {
 		this.inHouse = inHouse;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, inHouse, name, plantedDate);
+		return Objects.hash(address, id, inHouse, name, plantedDate);
 	}
 
 	@Override
@@ -75,7 +85,8 @@ public class Plant implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Plant other = (Plant) obj;
-		return Objects.equals(id, other.id) && Objects.equals(inHouse, other.inHouse)
-				&& Objects.equals(name, other.name) && Objects.equals(plantedDate, other.plantedDate);
+		return Objects.equals(address, other.address) && Objects.equals(id, other.id)
+				&& Objects.equals(inHouse, other.inHouse) && Objects.equals(name, other.name)
+				&& Objects.equals(plantedDate, other.plantedDate);
 	}
 }

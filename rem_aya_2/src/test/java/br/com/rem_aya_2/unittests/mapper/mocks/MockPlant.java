@@ -39,6 +39,7 @@ public class MockPlant {
 	        plant.setName("Name Test" + number);
 	        plant.setPlantedDate(new Date(2024-01-13));
 	        plant.setInHouse(false);
+	        plant.setAddress("Address Test" + number);
 	        return plant;
 	    }
 
@@ -48,6 +49,7 @@ public class MockPlant {
 	        plant.setName("Name Test" + number);
 	        plant.setPlantedDate(new Date(2024-01-13));
 	        plant.setInHouse(false);
+	        plant.setAddress("Address Test" + number);
 	        return plant;
 	    }
 }

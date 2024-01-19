@@ -7,7 +7,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"id", "name", "planted_date", "in_house"})
+@JsonPropertyOrder({"id", "name", "planted_date", "in_house", "address"})
 public class PlantVO implements Serializable {
 	
 	
@@ -21,6 +21,8 @@ public class PlantVO implements Serializable {
 	private Date plantedDate;
 	@JsonProperty("in_house")
 	private Boolean inHouse;
+	@JsonProperty("address")
+	private String address;
 	
 	public PlantVO() {}
 	
@@ -56,9 +58,17 @@ public class PlantVO implements Serializable {
 		this.inHouse = inHouse;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(inHouse, key, name, plantedDate);
+		return Objects.hash(address, inHouse, key, name, plantedDate);
 	}
 
 	@Override
@@ -70,7 +80,8 @@ public class PlantVO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PlantVO other = (PlantVO) obj;
-		return Objects.equals(inHouse, other.inHouse) && Objects.equals(key, other.key)
-				&& Objects.equals(name, other.name) && Objects.equals(plantedDate, other.plantedDate);
+		return Objects.equals(address, other.address) && Objects.equals(inHouse, other.inHouse)
+				&& Objects.equals(key, other.key) && Objects.equals(name, other.name)
+				&& Objects.equals(plantedDate, other.plantedDate);
 	}
 }
