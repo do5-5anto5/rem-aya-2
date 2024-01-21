@@ -1,0 +1,6 @@
+# 2024/21/04
+ * HATEOAS tests.  
+ *  some methods made to shorten code assertions on those tests. Cool, but i think i'll no do this again. Because if i have a fail,
+ *  need to "unclean" putting it again on top to see which line is not asserting.
+ *  Keep each assertion in each method might be faster than debug always that i have an assert error.
+ 
