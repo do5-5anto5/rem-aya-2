@@ -25,7 +25,8 @@ public class CustomizedExceptionHandlerController extends ResponseEntityExceptio
 		var exceptionResponse = new ExceptionResponse(
 				new Date(),
 				exception.getMessage(),
-				webRequest.getDescription(false));
+				webRequest.getDescription(false)
+				);
 		
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -37,9 +38,21 @@ public class CustomizedExceptionHandlerController extends ResponseEntityExceptio
 		var exceptionResponse = new ExceptionResponse(
 				new Date(),
 				exception.getMessage(),
-				webRequest.getDescription(false));
+				webRequest.getDescription(false)
+				);
 		
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
-
+	
+	public final ResponseEntity<ExceptionResponse> RequiredObjectIsNullExceptionHandler (
+			Exception exception, WebRequest webRequest){
+		
+		var exceptionResponse = new ExceptionResponse(
+				new Date(),
+				exception.getMessage(),
+				webRequest.getDescription(false)
+				);
+		
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+	}
 }

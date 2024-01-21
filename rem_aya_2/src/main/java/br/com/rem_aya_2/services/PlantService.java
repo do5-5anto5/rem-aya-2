@@ -10,6 +10,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import br.com.rem_aya_2.controllers.PlantController;
 import br.com.rem_aya_2.data_vo_v1.PlantVO;
+import br.com.rem_aya_2.exceptions.RequiredObjectIsNullException;
 import br.com.rem_aya_2.exceptions.ResourceNotFoundException;
 import br.com.rem_aya_2.mapper.Mapper;
 import br.com.rem_aya_2.model.Plant;
@@ -48,6 +49,8 @@ public class PlantService {
 	
 	public PlantVO create(PlantVO plant) {
 		
+		if (plant == null) throw new RequiredObjectIsNullException();
+		
 		logger.info("Creating a Plant!");
 		
 		var entity = Mapper.parseObject(plant, Plant.class);
@@ -58,6 +61,8 @@ public class PlantService {
 	}
 	
 	public PlantVO update(PlantVO plant) {
+		
+		if (plant == null) throw new RequiredObjectIsNullException();
 		
 		logger.info("Updating a Plant!");
 		
