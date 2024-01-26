@@ -118,7 +118,7 @@ public class JwtTokenProvider {
 		DecodedJWT decodedJWT = decodedToken(token);
 		try {
 			if (decodedJWT.getExpiresAt().before(new Date())) {
-				return false;
+			return false;
 			}
 			return true;
 		} catch (Exception e) {
