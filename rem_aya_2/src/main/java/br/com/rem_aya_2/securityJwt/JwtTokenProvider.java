@@ -78,8 +78,7 @@ public class JwtTokenProvider {
 			.strip();
 	}
 	
-	public String getRefreshToken (String username, List<String> roles, Date now) {
-		
+	public String getRefreshToken (String username, List<String> roles, Date now) {		
 		Date refreshTokenValidity = new Date(now.getTime() + validityInMilliseconds * 3);
 		
 		return JWT.create()
