@@ -26,16 +26,16 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class JwtTokenProvider {
 
-	@Value("${security.jwt.token.secret-key:secret")
+	@Value("${security.jwt.token.secret-key:secret}")
 	private String secretKey = "secret";
 	
-	@Value("${security.jwt.token.expire-length:3600000")
+	@Value("${security.jwt.token.expire-length:3600000}")
 	private long validityInMilliseconds = 3600000;
-	
-	Algorithm algorithm = null;
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	Algorithm algorithm = null;
 	
 	@PostConstruct
 	protected void init() {
@@ -64,7 +64,7 @@ public class JwtTokenProvider {
 		return createAccessToken(username, roles);
 	}
 	
-	public String getAccessToken(String username, List<String> roles, Date now, Date validity) {
+	private String getAccessToken(String username, List<String> roles, Date now, Date validity) {
 		
 		String issuerUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		
@@ -78,8 +78,8 @@ public class JwtTokenProvider {
 			.strip();
 	}
 	
-	public String getRefreshToken (String username, List<String> roles, Date now) {		
-		Date refreshTokenValidity = new Date(now.getTime() + validityInMilliseconds * 3);
+	private String getRefreshToken (String username, List<String> roles, Date now) {		
+		Date refreshTokenValidity = new Date(now.getTime() + (validityInMilliseconds * 3));
 		
 		return JWT.create()
 			.withClaim("roles", roles)

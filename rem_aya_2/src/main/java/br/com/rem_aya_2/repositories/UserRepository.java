@@ -10,6 +10,6 @@ import br.com.rem_aya_2.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 
-	@Query("SELECT u FROM User u WHERE u.username =:userName")
-	User findByUsername(@Param("username") String userName);
+	@Query("SELECT u FROM User u WHERE u.userName =:userName")
+	User findByUsername(@Param("userName") String userName);
 }

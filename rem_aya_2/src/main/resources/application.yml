@@ -11,8 +11,6 @@ spring:
     url: jdbc:mysql://localhost:3306/rem_aya_2?useTimezone=true&serverTimezone=UTC
     username: root
     password: admin123
-  profiles:
-    active: development
   jpa:
     open-in-view: false
     hibernate:
@@ -21,9 +19,11 @@ spring:
       #hibernate:
         #dialect: org.hibernate.dialect.MySQLDialect
     show-sql: false
-  flyway:
-    enabled: true
+  #flyway:
+    #enabled: true
 springdoc:
-  pathsToMatch: /api/**/v1/**
+  pathsToMatch:
+    - /auth/**
+    - /api/**/v1/**
   swagger-ui:
     use-root-path: true
