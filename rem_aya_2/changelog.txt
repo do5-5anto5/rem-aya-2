@@ -8,4 +8,4 @@
  #2024/02/04
  * StackOverFlowError
   * don't ever trust in auto-complete, nah...
-  * it made a cycle calling in set methods
+  * it made a recursive calling in overrided methods
