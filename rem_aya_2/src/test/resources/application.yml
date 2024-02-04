@@ -1,7 +1,7 @@
-cors:
-  originPatterns: http://localhost:3000,http://localhost:8080,https://github.com/do5-5anto5
 server:
   port: 8888
+cors:
+  originPatterns: http://localhost:3000,http://localhost:8080,https://github.com/do5-5anto5
 security:
   jwt:
     token:
@@ -10,17 +10,14 @@ security:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-  profiles:
-    active: development
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: none
     #properties:
       #hibernate:
         #dialect: org.hibernate.dialect.MySQLDialect
     show-sql: false
-  flyway:
-    enabled: true
 springdoc:
   pathsToMatch: 
     - /auth/**

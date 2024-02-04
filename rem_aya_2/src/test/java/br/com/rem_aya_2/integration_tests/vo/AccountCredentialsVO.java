@@ -1,4 +1,4 @@
-package br.com.rem_aya_2.data_vo_v1.security;
+package br.com.rem_aya_2.integration_tests.vo;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,8 +10,9 @@ public class AccountCredentialsVO implements Serializable{
 	private String username;
 	private String password;
 	
-	public AccountCredentialsVO() {}
 	
+	public AccountCredentialsVO() {}
+
 	public AccountCredentialsVO(String username, String password) {
 		this.username = username;
 		this.password = password;

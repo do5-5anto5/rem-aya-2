@@ -11,7 +11,7 @@ public class Startup {
 
 	/**
 		//ENCRIPT PASSWORDS
-		 
+ 
 		Map<String, PasswordEncoder> encoders = new HashMap<>();
 
 		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000,
@@ -25,6 +25,6 @@ public class Startup {
 		String result2 = passwordEncoder.encode("admin234");
 		System.out.println("My hash result1 " + result1);
 		System.out.println("My hash result2 " + result2);
-	 */
+	*/
 	}
 }

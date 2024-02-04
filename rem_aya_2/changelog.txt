@@ -4,8 +4,11 @@
   * need to "unclean" putting it again on top to see which line is not asserting.
   * Keep each assertion in each method might be faster than debug always that i have an assert error.
  
- 
- #2024/02/04
+#2024/02/04
  * StackOverFlowError
   * don't ever trust in auto-complete, nah...
   * it made a recursive calling in overrided methods
+
+#04/02/2024
+ *for some reason, when created PlantControllerTestCORS , the webEnvironment was not the same used in other classes (like SwaggerIntegrationTest)
+ *so, copy SwaggerIntegrationTests and did the necessary changes on code to turn into desired class and fix it.
