@@ -1,4 +1,4 @@
-package br.com.rem_aya_2.integration_tests.controllers.with_json;
+package br.com.rem_aya_2.integration_tests.controllers.cors.with_json;
 
 
 import static io.restassured.RestAssured.given;
@@ -31,7 +31,7 @@ import io.restassured.specification.RequestSpecification;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(OrderAnnotation.class)
-public class PlantControllerTest extends AbstractIntegrationTest {
+public class PlantControllerTestJsonCORS extends AbstractIntegrationTest {
 	
 	private static RequestSpecification specification;
 	private static ObjectMapper objectMapper;
@@ -113,35 +113,24 @@ public class PlantControllerTest extends AbstractIntegrationTest {
 	
 	@Test
 	@Order(2)
-	public void testUpdate() throws JsonMappingException, JsonProcessingException{
-		plant.setName("Bambu");
+	public void testCreateWithWrongOrigin() throws JsonMappingException, JsonProcessingException{
+		mockPlant();
 		
 		var content =
-			given().spec(specification)
-			.contentType(TestConfigs.CONTENT_TYPE_JSON)
-			.body(plant)
-				.when()
-			.put()
-				.then()
-					.statusCode(200)
-						.extract()
-						.body()
-							.asString();
+				given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_IDK)
+				.body(plant)
+					.when()
+				.post()
+					.then()
+						.statusCode(403)
+							.extract()
+							.body()
+								.asString();
 		
-		PlantVO persistedPlant = objectMapper.readValue(content, PlantVO.class);
-		plant = persistedPlant;
-		
-		assertNotNull(plant.getId());
-		assertNotNull(plant.getName());
-		assertNotNull(plant.getPlantedDate());
-		assertNotNull(plant.getInHouse());
-		assertNotNull(plant.getAddress());
-		
-		assertTrue(plant.getId() > 0);
-		
-		assertEquals("Bambu", plant.getName());
-		assertEquals(false, plant.getInHouse());
-		assertEquals("Alameda dos Anjos, 1993", plant.getAddress());
+		assertNotNull(content);
+		assertEquals("Invalid CORS request", content);
 	}
 	
 	@Test
@@ -150,21 +139,20 @@ public class PlantControllerTest extends AbstractIntegrationTest {
 		mockPlant();
 		
 		var content =
-			given().spec(specification)
-			.contentType(TestConfigs.CONTENT_TYPE_JSON)
-				.pathParam("id", plant.getId())
-				.when()
-			.get("{id}")
-				.then()
-					.statusCode(200)
-						.extract()
-						.body()
-							.asString();
+				given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_DO55ANTO5)
+					.pathParam("id", plant.getId())
+					.when()
+				.get("{id}")
+					.then()
+						.statusCode(200)
+							.extract()
+							.body()
+								.asString();
 		
 		PlantVO persistedPlant = objectMapper.readValue(content, PlantVO.class);
 		plant = persistedPlant;
-		
-		assertNotNull(persistedPlant);
 		
 		assertNotNull(plant.getId());
 		assertNotNull(plant.getName());
@@ -174,9 +162,31 @@ public class PlantControllerTest extends AbstractIntegrationTest {
 		
 		assertTrue(plant.getId() > 0);
 		
-		assertEquals("Bambu", plant.getName());
+		assertEquals("Arnica", plant.getName());
 		assertEquals(false, plant.getInHouse());
 		assertEquals("Alameda dos Anjos, 1993", plant.getAddress());
+	}
+	
+	@Test
+	@Order(4)
+	public void testFindByIdWithWrongOrigin() throws JsonMappingException, JsonProcessingException{
+		mockPlant();
+		
+		var content =
+				given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_IDK)
+					.pathParam("id", plant.getId())
+					.when()
+				.get("{id}")
+					.then()
+						.statusCode(403)
+							.extract()
+							.body()
+								.asString();
+		
+		assertNotNull(content);
+		assertEquals("Invalid CORS request", content);
 	}
 	
 	void mockPlant() {

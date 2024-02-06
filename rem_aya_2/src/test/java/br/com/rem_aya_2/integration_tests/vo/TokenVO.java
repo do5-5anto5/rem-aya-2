@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "TokenVO")
 public class TokenVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -92,6 +95,5 @@ public class TokenVO implements Serializable{
 				&& Objects.equals(created, other.created) && Objects.equals(expiration, other.expiration)
 				&& Objects.equals(refreshToken, other.refreshToken) && Objects.equals(username, other.username);
 	}
-	
 		
 }
