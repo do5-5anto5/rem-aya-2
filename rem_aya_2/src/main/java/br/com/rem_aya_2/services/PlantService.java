@@ -16,6 +16,7 @@ import br.com.rem_aya_2.exceptions.ResourceNotFoundException;
 import br.com.rem_aya_2.mapper.Mapper;
 import br.com.rem_aya_2.model.Plant;
 import br.com.rem_aya_2.repositories.PlantRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PlantService {
@@ -77,8 +78,26 @@ public class PlantService {
 		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
 		
 		return vo;
+	}
+	
+	@Transactional
+	public PlantVO changeInHouseProperty(Long id) {
 		
+		var entity = repository.findById(id)
+			.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
+		if (entity.getInHouse() == true) {
+			logger.info("Changing 'in house' property from a specific Plant to false");
+			repository.changeInHouseToFalse(id);
+		} else {
+			logger.info("Changing 'in house' property from a specific Plant to true");
+			repository.changeInHouseToTrue(id);
+		}
+			
+		var vo = Mapper.parseObject(entity, PlantVO.class);
+		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		
+		return vo;
 	}
 	
 	public void delete(Long id) {
@@ -90,4 +109,5 @@ public class PlantService {
 		
 		repository.delete(entity);
 	}
+
 }

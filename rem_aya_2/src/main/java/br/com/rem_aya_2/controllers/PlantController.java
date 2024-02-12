@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -69,8 +70,8 @@ public class PlantController {
 	}
 	
 	@PostMapping(
-			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
-			consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
+		produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
+		consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	@Operation(summary = "Adds a new Plant", description = "Adds a new Plant, by passing JSON, XML or YML representation of Plant",
 		tags = {"Plants"}, 
 		responses = {
@@ -89,8 +90,8 @@ public class PlantController {
 	}
 	
 	@PutMapping(
-			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
-			consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
+		produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
+		consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	@Operation(summary = "Updates a new Plant", description = "Updates a new Plant, by passing JSON, XML or YML representation of Plant",
 	tags = {"Plants"}, 
 		responses = {
@@ -107,6 +108,29 @@ public class PlantController {
 	)
 	public PlantVO update(@RequestBody PlantVO plant) {
 		return service.update(plant);
+	}
+	
+	@PatchMapping(
+			value = "/{id}",
+			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
+			consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
+	@Operation(summary = "Changes 'in house' property from a specific plant by id", description = "Changes 'in house' property from a specific plant by id",
+	tags = {"Plants"}, 
+		responses = {
+			@ApiResponse(description = "Success", responseCode = "200",
+				content = { @Content(mediaType = "application/json", 
+				array = @ArraySchema( schema = @Schema(implementation = PlantVO.class))
+				)}
+			),
+			@ApiResponse(description = "No Content", responseCode = "204", content = @Content),
+			@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+			@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),			
+			@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),			
+			@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)			
+		}
+	)
+	public PlantVO changeInHouseProperty(@PathVariable(value = "id") Long id) {
+		return service.changeInHouseProperty(id);
 	}
 	
 	@DeleteMapping(value = "/{id}")
