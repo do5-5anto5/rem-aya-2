@@ -130,7 +130,14 @@ public class PlantController {
 		}
 	)
 	public PlantVO changeInHouseProperty(@PathVariable(value = "id") Long id) {
-		return service.changeInHouseProperty(id);
+
+		var entity = service.findById(id);
+		
+		if (entity.getInHouse() == true) {
+			return service.changeInHouseToFalse(id);
+		} else {
+			return service.changeInHouseToTrue(id);
+		}
 	}
 	
 	@DeleteMapping(value = "/{id}")

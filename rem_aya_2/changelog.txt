@@ -13,7 +13,13 @@
  *for some reason, when created PlantControllerTestCORS , the webEnvironment was not the same used in other classes (like SwaggerIntegrationTest)
  *so, copy SwaggerIntegrationTests and did the necessary changes on code to turn into desired class and fix it.
  
- #06/02/2024
-  *when used @XmlRootElement to map object TokenVO into tests, it was no being mapped and deserealized by XmlMapper.
-   *now (in Jdk21 and SpringBoot 3.2.1) I'd found that is necessary to pass a name to fix it.
-   *so make the line of annotation @XmlRootElement(name = "TokenVO").
+#06/02/2024
+ *when used @XmlRootElement to map object TokenVO into tests, it was no being mapped and deserealized by XmlMapper.
+ *now (in Jdk21 and SpringBoot 3.2.1) I'd found that is necessary to pass a name to fix it.
+ *so make the line of annotation @XmlRootElement(name = "TokenVO").
+   
+#14/02/2024
+ *when testing in postman, the service for patch verb was working correctly.
+ *but when testing it, it was no patching in right time. Into the referent test, the object was not modified,
+  *but in next test (testFindById) it was correctly patched.
+ *so separate service by two and made an if else on controller to choose service.

@@ -166,9 +166,48 @@ public class PlantControllerTestYaml extends AbstractIntegrationTest {
 		assertEquals(false, plant.getInHouse());
 		assertEquals("Alameda dos Anjos, 1993", plant.getAddress());
 	}
-		
+	
 	@Test
 	@Order(3)
+	public void testChangeInHouseProperty() throws JsonMappingException, JsonProcessingException{
+		
+		var persistedPlant =
+			given().spec(specification).config(
+			RestAssuredConfig
+			.config()
+			.encoderConfig(EncoderConfig.encoderConfig()
+				.encodeContentTypeAs(
+					TestConfigs.CONTENT_TYPE_YML,
+					ContentType.TEXT))
+				)
+			.contentType(TestConfigs.CONTENT_TYPE_YML)
+			.accept(TestConfigs.CONTENT_TYPE_YML)
+			.pathParam("id", plant.getId())
+				.when()
+			.patch("{id}")
+				.then()
+					.statusCode(200)
+					.extract()
+						.body()
+							.as(PlantVO.class, objectMapper);
+		
+		plant = persistedPlant;
+		
+		assertNotNull(plant.getId());
+		assertNotNull(plant.getName());
+		assertNotNull(plant.getPlantedDate());
+		assertNotNull(plant.getInHouse());
+		assertNotNull(plant.getAddress());
+		
+		assertTrue(plant.getId() > 0);
+		assertTrue(plant.getInHouse());
+		
+		assertEquals("Bambu", plant.getName());
+		assertEquals("Alameda dos Anjos, 1993", plant.getAddress());
+	}
+		
+	@Test
+	@Order(4)
 	public void testFindById() throws JsonMappingException, JsonProcessingException{
 		mockPlant();
 		
@@ -204,12 +243,12 @@ public class PlantControllerTestYaml extends AbstractIntegrationTest {
 		assertTrue(plant.getId() > 0);
 		
 		assertEquals("Bambu", plant.getName());
-		assertEquals(false, plant.getInHouse());
+		assertEquals(true, plant.getInHouse());
 		assertEquals("Alameda dos Anjos, 1993", plant.getAddress());
 	}
 	
 	@Test
-	@Order(4)
+	@Order(5)
 	public void testDelete() throws JsonMappingException, JsonProcessingException{
 		
 			given().spec(specification)
@@ -231,7 +270,7 @@ public class PlantControllerTestYaml extends AbstractIntegrationTest {
 	}
 	
 	@Test
-	@Order(5)
+	@Order(6)
 	public void testFindAll() throws JsonMappingException, JsonProcessingException{
 		
 		var content =
@@ -287,7 +326,7 @@ public class PlantControllerTestYaml extends AbstractIntegrationTest {
 	}
 	
 	@Test
-	@Order(6)
+	@Order(7)
 	public void TestFindAllWithoutToken() throws JsonMappingException, JsonProcessingException {
 		
 		RequestSpecification specificationWithoutToken = new RequestSpecBuilder()

@@ -37,7 +37,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"raw": "{\n  \"name\": \"Capim\",\n        \"plantedDate\": \"2024-01-12T00:00:00.000+00:00\",\n        \"inHouse\": true,\n        \"address\": \"Rua Neves 543, Sao Paulo, Brazil\"\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -233,7 +233,24 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json"
+												"value": "application/x-yaml",
+												"disabled": true
+											},
+											{
+												"key": "Accept",
+												"value": "application/xml",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "Origin",
+												"value": "http://localhost:8080",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessToken}}",
+												"type": "text"
 											}
 										],
 										"url": {
@@ -869,10 +886,16 @@
 												"key": "Authorization",
 												"value": "Bearer {{accessToken}}",
 												"type": "text"
+											},
+											{
+												"key": "",
+												"value": "",
+												"type": "text",
+												"disabled": true
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1/:id",
+											"raw": "{{baseUrl}}/api/plant/v1/3",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -880,14 +903,7 @@
 												"api",
 												"plant",
 												"v1",
-												":id"
-											],
-											"variable": [
-												{
-													"key": "id",
-													"value": "<long>",
-													"description": "(Required) "
-												}
+												"3"
 											]
 										},
 										"description": "Deletes a Plant, by passing Id"
@@ -1017,6 +1033,233 @@
 											"name": "Internal Error",
 											"originalRequest": {
 												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Changes 'in house' property from a specific Plant by id Copy",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/plant/v1/2",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"plant",
+												"v1",
+												"2"
+											]
+										},
+										"description": "Changes 'in house' property from a specific plant by id"
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"ipsum_4a\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      },\n      \"deserunt3d\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"veniam_ad4\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  }\n]"
+										},
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Internal Error",
+											"originalRequest": {
+												"method": "PATCH",
 												"header": [],
 												"url": {
 													"raw": "{{baseUrl}}/api/plant/v1/:id",

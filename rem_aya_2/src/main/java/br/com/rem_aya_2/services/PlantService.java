@@ -81,19 +81,35 @@ public class PlantService {
 	}
 	
 	@Transactional
-	public PlantVO changeInHouseProperty(Long id) {
+	public PlantVO changeInHouseToTrue(Long id) {
 		
+		repository.changeInHouseToTrue(id);
+
 		var entity = repository.findById(id)
 			.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
-		if (entity.getInHouse() == true) {
-			logger.info("Changing 'in house' property from a specific Plant to false");
-			repository.changeInHouseToFalse(id);
-		} else {
-			logger.info("Changing 'in house' property from a specific Plant to true");
-			repository.changeInHouseToTrue(id);
-		}
-			
+//		if (entity.getInHouse() == true) {
+//			logger.info("Changing 'in house' property from a specific Plant to false");
+//			repository.changeInHouseToFalse(id);
+//		} else {
+//			logger.info("Changing 'in house' property from a specific Plant to true");
+//			repository.changeInHouseToTrue(id);
+//		}
+//		
+		var vo = Mapper.parseObject(entity, PlantVO.class);
+		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		
+		return vo;
+	}
+	
+	@Transactional
+	public PlantVO changeInHouseToFalse(Long id) {
+		
+		repository.changeInHouseToFalse(id);
+		
+		var entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
+		
 		var vo = Mapper.parseObject(entity, PlantVO.class);
 		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
 		
