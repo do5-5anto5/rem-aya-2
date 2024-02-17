@@ -26,7 +26,7 @@ public class Plant implements Serializable {
 	private Date plantedDate;
 	@Column(name = "in_house", nullable = false)
 	private Boolean inHouse;
-	@Column(name = "address", nullable = false)
+	@Column(name = "address", nullable = false, length = 100)
 	private String address;
 	
 	public Plant() {}

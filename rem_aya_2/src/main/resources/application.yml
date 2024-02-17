@@ -19,8 +19,8 @@ spring:
       #hibernate:
         #dialect: org.hibernate.dialect.MySQLDialect
     show-sql: false
-  #flyway:
-    #enabled: true
+  flyway:
+    enabled: true
 springdoc:
   pathsToMatch:
     - /auth/**

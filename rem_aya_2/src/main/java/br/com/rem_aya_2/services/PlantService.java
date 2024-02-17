@@ -32,7 +32,7 @@ public class PlantService {
 		
 		var plants = Mapper.parseObjectsList(repository.findAll(), PlantVO.class);
 		plants.stream().forEach(p ->
-		p.add(linkTo(methodOn(PlantController.class).findById(p.getKey())).withSelfRel()));
+		addLink(p));
 		
 		return plants;
 	}
@@ -45,7 +45,7 @@ public class PlantService {
 				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
 		var vo = Mapper.parseObject(entity, PlantVO.class);
-		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		addLink(vo);
 		return vo;
 	}
 	
@@ -57,7 +57,7 @@ public class PlantService {
 		
 		var entity = Mapper.parseObject(plant, Plant.class);
 		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
-		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		addLink(vo);
 		
 		return vo;
 	}
@@ -75,7 +75,7 @@ public class PlantService {
 		entity.setInHouse(plant.getInHouse());
 		
 		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
-		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		addLink(vo);
 		
 		return vo;
 	}
@@ -88,16 +88,8 @@ public class PlantService {
 		var entity = repository.findById(id)
 			.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
-//		if (entity.getInHouse() == true) {
-//			logger.info("Changing 'in house' property from a specific Plant to false");
-//			repository.changeInHouseToFalse(id);
-//		} else {
-//			logger.info("Changing 'in house' property from a specific Plant to true");
-//			repository.changeInHouseToTrue(id);
-//		}
-//		
 		var vo = Mapper.parseObject(entity, PlantVO.class);
-		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		addLink(vo);
 		
 		return vo;
 	}
@@ -111,7 +103,7 @@ public class PlantService {
 				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
 		var vo = Mapper.parseObject(entity, PlantVO.class);
-		vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+		addLink(vo);
 		
 		return vo;
 	}
@@ -124,6 +116,10 @@ public class PlantService {
 				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
 		repository.delete(entity);
+	}
+	
+	private PlantVO addLink (PlantVO vo) {
+		return vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
 	}
 
 }
