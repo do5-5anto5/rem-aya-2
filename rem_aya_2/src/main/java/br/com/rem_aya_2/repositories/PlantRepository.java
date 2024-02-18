@@ -1,5 +1,7 @@
 package br.com.rem_aya_2.repositories;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +20,7 @@ public interface PlantRepository extends JpaRepository<Plant, Long>{
 	@Modifying
 	@Query("UPDATE Plant p SET p.inHouse = true WHERE p.id =:id")
 	void changeInHouseToTrue(@Param("id") Long id);
+	
+	@Query("SELECT p FROM Plant p WHERE p.name LIKE LOWER(CONCAT ('%',:name,'%'))")
+	Page<Plant> findPlantsByName(@Param("name") String name, Pageable pageable);
 }

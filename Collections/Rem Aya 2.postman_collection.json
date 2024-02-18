@@ -400,6 +400,328 @@
 									]
 								},
 								{
+									"name": "Finds Plants by Name Copy",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Origin",
+												"value": "{{baseUrl}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=be&page=0&size=12&direction=asc",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"plant",
+												"v1",
+												"findPlantsByName",
+												":name"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "be",
+													"description": "(Required) "
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "12"
+												},
+												{
+													"key": "direction",
+													"value": "asc"
+												}
+											],
+											"variable": [
+												{
+													"key": "name"
+												}
+											]
+										},
+										"description": "Finds all Plants"
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=<string>&page=0&size=12&direction=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														"findPlantsByName",
+														":name"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "12"
+														},
+														{
+															"key": "direction",
+															"value": "asc"
+														}
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"ut__\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      },\n      \"adipisicing2f5\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"proident2\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      },\n      \"Ut6d\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  }\n]"
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=<string>&page=0&size=12&direction=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														"findPlantsByName",
+														":name"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "12"
+														},
+														{
+															"key": "direction",
+															"value": "asc"
+														}
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=<string>&page=0&size=12&direction=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														"findPlantsByName",
+														":name"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "12"
+														},
+														{
+															"key": "direction",
+															"value": "asc"
+														}
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=<string>&page=0&size=12&direction=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														"findPlantsByName",
+														":name"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "12"
+														},
+														{
+															"key": "direction",
+															"value": "asc"
+														}
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Internal Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=<string>&page=0&size=12&direction=asc",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														"findPlantsByName",
+														":name"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "<string>",
+															"description": "(Required) "
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "12"
+														},
+														{
+															"key": "direction",
+															"value": "asc"
+														}
+													],
+													"variable": [
+														{
+															"key": "name"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
 									"name": "Finds a Plant",
 									"request": {
 										"method": "GET",
@@ -878,190 +1200,6 @@
 									]
 								},
 								{
-									"name": "Deletes a Plant",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "Bearer {{accessToken}}",
-												"type": "text"
-											},
-											{
-												"key": "",
-												"value": "",
-												"type": "text",
-												"disabled": true
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1/3",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"plant",
-												"v1",
-												"3"
-											]
-										},
-										"description": "Deletes a Plant, by passing Id"
-									},
-									"response": [
-										{
-											"name": "No Content",
-											"originalRequest": {
-												"method": "DELETE",
-												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1/:id",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1",
-														":id"
-													],
-													"variable": [
-														{
-															"key": "id"
-														}
-													]
-												}
-											},
-											"status": "No Content",
-											"code": 204,
-											"_postman_previewlanguage": "text",
-											"header": [],
-											"cookie": [],
-											"body": ""
-										},
-										{
-											"name": "Bad Request",
-											"originalRequest": {
-												"method": "DELETE",
-												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1/:id",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1",
-														":id"
-													],
-													"variable": [
-														{
-															"key": "id"
-														}
-													]
-												}
-											},
-											"status": "Bad Request",
-											"code": 400,
-											"_postman_previewlanguage": "text",
-											"header": [],
-											"cookie": [],
-											"body": ""
-										},
-										{
-											"name": "Unauthorized",
-											"originalRequest": {
-												"method": "DELETE",
-												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1/:id",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1",
-														":id"
-													],
-													"variable": [
-														{
-															"key": "id"
-														}
-													]
-												}
-											},
-											"status": "Unauthorized",
-											"code": 401,
-											"_postman_previewlanguage": "text",
-											"header": [],
-											"cookie": [],
-											"body": ""
-										},
-										{
-											"name": "Not Found",
-											"originalRequest": {
-												"method": "DELETE",
-												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1/:id",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1",
-														":id"
-													],
-													"variable": [
-														{
-															"key": "id"
-														}
-													]
-												}
-											},
-											"status": "Not Found",
-											"code": 404,
-											"_postman_previewlanguage": "text",
-											"header": [],
-											"cookie": [],
-											"body": ""
-										},
-										{
-											"name": "Internal Error",
-											"originalRequest": {
-												"method": "DELETE",
-												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1/:id",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1",
-														":id"
-													],
-													"variable": [
-														{
-															"key": "id"
-														}
-													]
-												}
-											},
-											"status": "Internal Server Error",
-											"code": 500,
-											"_postman_previewlanguage": "text",
-											"header": [],
-											"cookie": [],
-											"body": ""
-										}
-									]
-								},
-								{
 									"name": "Changes 'in house' property from a specific Plant by id Copy",
 									"request": {
 										"method": "PATCH",
@@ -1260,6 +1398,190 @@
 											"name": "Internal Error",
 											"originalRequest": {
 												"method": "PATCH",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Deletes a Plant",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{accessToken}}",
+												"type": "text"
+											},
+											{
+												"key": "",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/plant/v1/3",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"plant",
+												"v1",
+												"3"
+											]
+										},
+										"description": "Deletes a Plant, by passing Id"
+									},
+									"response": [
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/plant/v1/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"plant",
+														"v1",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Internal Error",
+											"originalRequest": {
+												"method": "DELETE",
 												"header": [],
 												"url": {
 													"raw": "{{baseUrl}}/api/plant/v1/:id",

@@ -45,7 +45,23 @@ public class PlantService {
 				.findAll(pageable.getPageNumber(),
 					pageable.getPageSize(),
 					"asc")).withSelfRel();
-		;
+		
+		return assembler.toModel(plantVOsPage, link);
+	}
+	
+	public PagedModel<EntityModel<PlantVO>> findPlantsByName(String name, Pageable pageable){
+		
+		logger.info("Finding Plants by Name!");		
+		var plantsPage = repository.findPlantsByName(name, pageable);		
+		var plantVOsPage = plantsPage.map(p -> mapperParse(p));		
+		plantVOsPage.map(p -> addLink(p));		
+		
+		Link link = linkTo(
+			methodOn(PlantController.class)
+				.findAll(pageable.getPageNumber(),
+					pageable.getPageSize(),
+					"asc")).withSelfRel();
+		
 		return assembler.toModel(plantVOsPage, link);
 	}
 
