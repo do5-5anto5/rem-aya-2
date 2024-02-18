@@ -3,10 +3,11 @@ package br.com.rem_aya_2.services;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.rem_aya_2.controllers.PlantController;
@@ -26,15 +27,13 @@ public class PlantService {
 	
 	private Logger logger = Logger.getLogger(PlantService.class.getName());
 	
-	public List<PlantVO> findAll(){
+	public Page<PlantVO> findAll(Pageable pageable){
 		
-		logger.info("Finding all Plants!");
-		
-		var plants = Mapper.parseObjectsList(repository.findAll(), PlantVO.class);
-		plants.stream().forEach(p ->
-		addLink(p));
-		
-		return plants;
+		logger.info("Finding all Plants!");		
+		var plantsPage = repository.findAll(pageable);		
+		var plantVOsPage = plantsPage.map(p -> mapperParse(p));		
+		plantVOsPage.map(p -> addLink(p));		
+		return plantVOsPage;
 	}
 
 	public PlantVO findById(Long id) {
@@ -56,7 +55,7 @@ public class PlantService {
 		logger.info("Creating a Plant!");
 		
 		var entity = Mapper.parseObject(plant, Plant.class);
-		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
+		var vo = mapperParse(repository.save(entity));
 		addLink(vo);
 		
 		return vo;
@@ -74,7 +73,7 @@ public class PlantService {
 		entity.setPlantedDate(plant.getPlantedDate());
 		entity.setInHouse(plant.getInHouse());
 		
-		var vo = Mapper.parseObject(repository.save(entity), PlantVO.class);
+		var vo = mapperParse(repository.save(entity));
 		addLink(vo);
 		
 		return vo;
@@ -88,7 +87,7 @@ public class PlantService {
 		var entity = repository.findById(id)
 			.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
-		var vo = Mapper.parseObject(entity, PlantVO.class);
+		var vo = mapperParse(entity);
 		addLink(vo);
 		
 		return vo;
@@ -102,7 +101,7 @@ public class PlantService {
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
 		
-		var vo = Mapper.parseObject(entity, PlantVO.class);
+		var vo = mapperParse(entity);
 		addLink(vo);
 		
 		return vo;
@@ -120,6 +119,10 @@ public class PlantService {
 	
 	private PlantVO addLink (PlantVO vo) {
 		return vo.add(linkTo(methodOn(PlantController.class).findById(vo.getKey())).withSelfRel());
+	}
+	
+	private PlantVO mapperParse(Plant entity) {
+		return Mapper.parseObject(entity, PlantVO.class);
 	}
 
 }
