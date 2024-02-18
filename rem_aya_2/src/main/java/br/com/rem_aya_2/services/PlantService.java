@@ -6,8 +6,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
 
 import br.com.rem_aya_2.controllers.PlantController;
@@ -25,15 +28,25 @@ public class PlantService {
 	@Autowired
 	PlantRepository repository;
 	
+	@Autowired
+	PagedResourcesAssembler<PlantVO> assembler;
+	
 	private Logger logger = Logger.getLogger(PlantService.class.getName());
 	
-	public Page<PlantVO> findAll(Pageable pageable){
+	public PagedModel<EntityModel<PlantVO>> findAll(Pageable pageable){
 		
 		logger.info("Finding all Plants!");		
 		var plantsPage = repository.findAll(pageable);		
 		var plantVOsPage = plantsPage.map(p -> mapperParse(p));		
 		plantVOsPage.map(p -> addLink(p));		
-		return plantVOsPage;
+		
+		Link link = linkTo(
+			methodOn(PlantController.class)
+				.findAll(pageable.getPageNumber(),
+					pageable.getPageSize(),
+					"asc")).withSelfRel();
+		;
+		return assembler.toModel(plantVOsPage, link);
 	}
 
 	public PlantVO findById(Long id) {
@@ -85,8 +98,7 @@ public class PlantService {
 		repository.changeInHouseToTrue(id);
 
 		var entity = repository.findById(id)
-			.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
-		
+			.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));		
 		var vo = mapperParse(entity);
 		addLink(vo);
 		
@@ -99,8 +111,7 @@ public class PlantService {
 		repository.changeInHouseToFalse(id);
 		
 		var entity = repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));
-		
+				.orElseThrow(() -> new ResourceNotFoundException("No records for this ID"));		
 		var vo = mapperParse(entity);
 		addLink(vo);
 		
