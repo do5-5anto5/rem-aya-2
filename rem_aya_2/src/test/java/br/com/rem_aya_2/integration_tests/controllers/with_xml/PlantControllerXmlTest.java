@@ -5,7 +5,6 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -23,6 +21,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import br.com.rem_aya_2.configs.TestConfigs;
 import br.com.rem_aya_2.integration_tests.testcontainers.AbstractIntegrationTest;
 import br.com.rem_aya_2.integration_tests.vo.AccountCredentialsVO;
+import br.com.rem_aya_2.integration_tests.vo.PlantPagedModel;
 import br.com.rem_aya_2.integration_tests.vo.PlantVO;
 import br.com.rem_aya_2.integration_tests.vo.TokenVO;
 import io.restassured.builder.RequestSpecBuilder;
@@ -240,6 +239,7 @@ public class PlantControllerXmlTest extends AbstractIntegrationTest {
 			given().spec(specification)
 			.contentType(TestConfigs.CONTENT_TYPE_XML)
 			.accept(TestConfigs.CONTENT_TYPE_XML)
+			.queryParams("page", 3, "size", 12, "direction", "asc")
 				.when()
 			.get()
 				.then()
@@ -248,7 +248,8 @@ public class PlantControllerXmlTest extends AbstractIntegrationTest {
 						.body()
 							.asString();
 		
-		List<PlantVO> plants = objectMapper.readValue(content, new TypeReference<List<PlantVO>>() {});
+		PlantPagedModel wrapper = objectMapper.readValue(content, PlantPagedModel.class);
+		var plants = wrapper.getContent();
 		
 		PlantVO foundPlant1 = plants.get(0);
 		
@@ -258,11 +259,11 @@ public class PlantControllerXmlTest extends AbstractIntegrationTest {
 		assertNotNull(foundPlant1.getInHouse());
 		assertNotNull(foundPlant1.getAddress());
 		
-		assertTrue(foundPlant1.getId() > 0);
 		
-		assertEquals("Camomila", foundPlant1.getName());
+		assertEquals(360, foundPlant1.getId());
+		assertEquals("Arctoparmelia Lichen", foundPlant1.getName());
 		assertEquals(true, foundPlant1.getInHouse());
-		assertEquals("Rua Neves 543, Sao Paulo, Brazil", foundPlant1.getAddress());
+		assertEquals("35166 Warner Crossing", foundPlant1.getAddress());
 		
 		PlantVO foundPlant2 = plants.get(1);
 		
@@ -272,11 +273,11 @@ public class PlantControllerXmlTest extends AbstractIntegrationTest {
 		assertNotNull(foundPlant2.getInHouse());
 		assertNotNull(foundPlant2.getAddress());
 		
-		assertTrue(foundPlant2.getId() > 0);
 		
-		assertEquals("Camomila", foundPlant2.getName());
-		assertEquals(true, foundPlant2.getInHouse());
-		assertEquals("Rua Suadi 100, Minas Gerais, Brazil", foundPlant2.getAddress());
+		assertEquals(601, foundPlant2.getId());
+		assertEquals("Arizona Lipfern", foundPlant2.getName());
+		assertEquals(false, foundPlant2.getInHouse());
+		assertEquals("62533 Blue Bill Park Lane", foundPlant2.getAddress());
 		
 	}
 	
