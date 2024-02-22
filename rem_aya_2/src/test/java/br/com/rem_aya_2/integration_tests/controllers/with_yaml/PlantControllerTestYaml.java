@@ -406,6 +406,45 @@ public class PlantControllerTestYaml extends AbstractIntegrationTest {
 			.then()
 				.statusCode(403);
 	}
+
+	@Test
+	@Order(9)
+	public void testPageHATEOAS() throws JsonMappingException, JsonProcessingException{
+		
+		var unthreatedContent =
+			given().spec(specification)
+			.config(
+				RestAssuredConfig
+				.config()
+				.encoderConfig(EncoderConfig.encoderConfig()
+					.encodeContentTypeAs(
+						TestConfigs.CONTENT_TYPE_YML,
+						ContentType.TEXT))
+			)
+			.contentType(TestConfigs.CONTENT_TYPE_YML)
+			.queryParams("page", 3, "size", 12, "direction", "asc")
+			.accept(TestConfigs.CONTENT_TYPE_YML)
+				.when()
+			.get()
+				.then()
+			.statusCode(200)
+				.extract()
+				.body()
+					.asString();
+		
+		var content = unthreatedContent.replace("\n", "").replace("\r", "");
+		
+		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost:8888/api/plant/v1/360\""));
+		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost:8888/api/plant/v1/601\""));
+		
+		assertTrue(content.contains("rel: \"first\"  href: \"http://localhost:8888/api/plant/v1?direction=asc&page=0&size=12&sort=name,asc\""));
+		assertTrue(content.contains("rel: \"prev\"  href: \"http://localhost:8888/api/plant/v1?direction=asc&page=2&size=12&sort=name,asc\""));
+		assertTrue(content.contains("rel: \"self\"  href: \"http://localhost:8888/api/plant/v1?page=3&size=12&direction=asc\""));
+		assertTrue(content.contains("rel: \"next\"  href: \"http://localhost:8888/api/plant/v1?direction=asc&page=4&size=12&sort=name,asc\""));
+		assertTrue(content.contains("rel: \"last\"  href: \"http://localhost:8888/api/plant/v1?direction=asc&page=83&size=12&sort=name,asc\""));
+		
+		assertTrue(content.contains("page:  size: 12  totalElements: 1005  totalPages: 84  number: 3"));
+	}
 	
 	void mockPlant() {
 		plant.setName("Arnica");

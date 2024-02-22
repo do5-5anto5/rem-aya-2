@@ -124,28 +124,6 @@ public class PlantServiceTest {
 		service.delete(1L);
 	}
 	
-//	@Test
-//	void TestFindAll() {
-//		List<Plant>list = input.mockEntityList();
-//		
-//		when(repository.findAll()).thenReturn(list);
-//		
-//		var plants = service.findAll();
-//		
-//		assertNotNull(plants);
-//		assertEquals(14, plants.size());
-//		
-//		var plantOne = plants.get(1);
-//		testVOListAssertions(plantOne, 1);
-//		
-//		var plantSeven = plants.get(7);
-//		
-//		testVOListAssertions(plantSeven, 7);
-//		
-//		var plantNine = plants.get(9);
-//		testVOListAssertions(plantNine, 9);
-//	}
-	
 	void testVOAssertions(PlantVO result) {
 		assertNotNull(result);
 		assertNotNull(result.getKey());
