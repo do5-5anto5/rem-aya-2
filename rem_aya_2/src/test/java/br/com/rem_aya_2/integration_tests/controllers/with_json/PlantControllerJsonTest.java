@@ -321,7 +321,7 @@ public class PlantControllerJsonTest extends AbstractIntegrationTest {
 	}
 	
 	@Test
-	@Order(7)
+	@Order(8)
 	public void testFindAllWithoutToken() throws JsonMappingException, JsonProcessingException{
 		
 		RequestSpecification specificationWithoutToken = new RequestSpecBuilder()
