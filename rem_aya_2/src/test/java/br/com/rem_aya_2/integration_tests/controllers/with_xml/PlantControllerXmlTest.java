@@ -21,9 +21,9 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import br.com.rem_aya_2.configs.TestConfigs;
 import br.com.rem_aya_2.integration_tests.testcontainers.AbstractIntegrationTest;
 import br.com.rem_aya_2.integration_tests.vo.AccountCredentialsVO;
-import br.com.rem_aya_2.integration_tests.vo.PlantPagedModel;
 import br.com.rem_aya_2.integration_tests.vo.PlantVO;
 import br.com.rem_aya_2.integration_tests.vo.TokenVO;
+import br.com.rem_aya_2.integration_tests.vo.pagedmodels.PlantPagedModel;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -259,7 +259,6 @@ public class PlantControllerXmlTest extends AbstractIntegrationTest {
 		assertNotNull(foundPlant1.getInHouse());
 		assertNotNull(foundPlant1.getAddress());
 		
-		
 		assertEquals(360, foundPlant1.getId());
 		assertEquals("Arctoparmelia Lichen", foundPlant1.getName());
 		assertEquals(true, foundPlant1.getInHouse());
@@ -273,7 +272,6 @@ public class PlantControllerXmlTest extends AbstractIntegrationTest {
 		assertNotNull(foundPlant2.getInHouse());
 		assertNotNull(foundPlant2.getAddress());
 		
-		
 		assertEquals(601, foundPlant2.getId());
 		assertEquals("Arizona Lipfern", foundPlant2.getName());
 		assertEquals(false, foundPlant2.getInHouse());
@@ -283,6 +281,56 @@ public class PlantControllerXmlTest extends AbstractIntegrationTest {
 	
 	@Test
 	@Order(7)
+	public void testFindByName() throws JsonMappingException, JsonProcessingException{
+		
+		var content =
+			given().spec(specification)
+			.contentType(TestConfigs.CONTENT_TYPE_XML)
+			.accept(TestConfigs.CONTENT_TYPE_XML)
+			.pathParam("name", "be")
+			.queryParams("page", 0, "size", 6, "direction", "asc")
+				.when()
+			.get("/findPlantsByName/:name?name={name}")
+				.then()
+					.statusCode(200)
+						.extract()
+						.body()
+							.asString();
+		
+		PlantPagedModel wrapper = objectMapper.readValue(content, PlantPagedModel.class);
+		var plants = wrapper.getContent();
+		
+		PlantVO foundPlant1 = plants.get(0);
+		
+		assertNotNull(foundPlant1.getId());
+		assertNotNull(foundPlant1.getName());
+		assertNotNull(foundPlant1.getPlantedDate());
+		assertNotNull(foundPlant1.getInHouse());
+		assertNotNull(foundPlant1.getAddress());
+		
+		
+		assertEquals(422, foundPlant1.getId());
+		assertEquals("Adirondack Blackberry", foundPlant1.getName());
+		assertEquals(false, foundPlant1.getInHouse());
+		assertEquals("4271 Washington Way", foundPlant1.getAddress());
+		
+		PlantVO foundPlant2 = plants.get(1);
+		
+		assertNotNull(foundPlant2.getId());
+		assertNotNull(foundPlant2.getName());
+		assertNotNull(foundPlant2.getPlantedDate());
+		assertNotNull(foundPlant2.getInHouse());
+		assertNotNull(foundPlant2.getAddress());
+		
+		assertEquals(578, foundPlant2.getId());
+		assertEquals("Alaska Springbeauty", foundPlant2.getName());
+		assertEquals(false, foundPlant2.getInHouse());
+		assertEquals("408 Grim Center", foundPlant2.getAddress());
+		
+	}
+	
+	@Test
+	@Order(8)
 	public void testFindAllWithoutToken() throws JsonMappingException, JsonProcessingException{
 		
 		RequestSpecification specificationWithoutToken = new RequestSpecBuilder()
