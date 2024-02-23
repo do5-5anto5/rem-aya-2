@@ -13,5 +13,10 @@
     "name": "security.jwt.token.expire-length",
     "type": "java.lang.String",
     "description": "time for authentication expirate"
-  } 
+  },
+  {
+    "name": "file.upload-dir",
+    "type": "java.lang.String",
+    "description": "defines a directory for uploads"
+  }
 ]}
