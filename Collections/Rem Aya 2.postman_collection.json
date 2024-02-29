@@ -3,7 +3,7 @@
 		"_postman_id": "43473e25-83a1-491e-853a-7a83eee5f147",
 		"name": "Rem Aya 2",
 		"description": "RESTful API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "31284474"
 	},
 	"item": [
@@ -45,17 +45,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"plant",
-												"v1"
-											]
-										},
+										"url": "{{baseUrl}}/api/plant/v1",
 										"description": "Adds a new Plant, by passing JSON, XML or YML representation of Plant"
 									},
 									"response": [
@@ -83,17 +73,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "OK",
 											"code": 200,
@@ -127,17 +107,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -166,17 +136,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Unauthorized",
 											"code": 401,
@@ -205,17 +165,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Internal Server Error",
 											"code": 500,
@@ -239,12 +189,11 @@
 											{
 												"key": "Accept",
 												"value": "application/xml",
-												"type": "text",
-												"disabled": true
+												"type": "text"
 											},
 											{
 												"key": "Origin",
-												"value": "http://localhost:8080",
+												"value": "{{baseUrl}}",
 												"type": "text"
 											},
 											{
@@ -254,7 +203,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1",
+											"raw": "{{baseUrl}}/api/plant/v1?page=3&size=12&direction=asc",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -262,6 +211,20 @@
 												"api",
 												"plant",
 												"v1"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "3"
+												},
+												{
+													"key": "size",
+													"value": "12"
+												},
+												{
+													"key": "direction",
+													"value": "asc"
+												}
 											]
 										},
 										"description": "Finds all Plants"
@@ -277,17 +240,7 @@
 														"value": "application/json"
 													}
 												],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "OK",
 											"code": 200,
@@ -306,17 +259,7 @@
 											"originalRequest": {
 												"method": "GET",
 												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -330,17 +273,7 @@
 											"originalRequest": {
 												"method": "GET",
 												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Unauthorized",
 											"code": 401,
@@ -354,17 +287,7 @@
 											"originalRequest": {
 												"method": "GET",
 												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Not Found",
 											"code": 404,
@@ -378,17 +301,7 @@
 											"originalRequest": {
 												"method": "GET",
 												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Internal Server Error",
 											"code": 500,
@@ -400,7 +313,7 @@
 									]
 								},
 								{
-									"name": "Finds Plants by Name Copy",
+									"name": "Finds Plants by Name",
 									"request": {
 										"method": "GET",
 										"header": [
@@ -420,7 +333,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=be&page=0&size=12&direction=asc",
+											"raw": "{{baseUrl}}/api/plant/v1/findPlantsByName/:name?name=be&page=0&size=12&direction=asc&size=6&direction=asc",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -434,8 +347,7 @@
 											"query": [
 												{
 													"key": "name",
-													"value": "be",
-													"description": "(Required) "
+													"value": "be"
 												},
 												{
 													"key": "page",
@@ -448,11 +360,20 @@
 												{
 													"key": "direction",
 													"value": "asc"
+												},
+												{
+													"key": "size",
+													"value": "6"
+												},
+												{
+													"key": "direction",
+													"value": "asc"
 												}
 											],
 											"variable": [
 												{
-													"key": "name"
+													"key": "name",
+													"value": ""
 												}
 											]
 										},
@@ -736,25 +657,7 @@
 												"type": "text"
 											}
 										],
-										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1/:id",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"plant",
-												"v1",
-												":id"
-											],
-											"variable": [
-												{
-													"key": "id",
-													"value": "<long>",
-													"description": "(Required) "
-												}
-											]
-										},
+										"url": "{{baseUrl}}/api/plant/v1/13",
 										"description": "Finds a Plant"
 									},
 									"response": [
@@ -979,17 +882,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"plant",
-												"v1"
-											]
-										},
+										"url": "{{baseUrl}}/api/plant/v1",
 										"description": "Updates a new Plant, by passing JSON, XML or YML representation of Plant"
 									},
 									"response": [
@@ -1017,17 +910,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "OK",
 											"code": 200,
@@ -1061,17 +944,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -1100,17 +973,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Unauthorized",
 											"code": 401,
@@ -1139,17 +1002,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Not Found",
 											"code": 404,
@@ -1178,17 +1031,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "{{baseUrl}}/api/plant/v1",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"plant",
-														"v1"
-													]
-												}
+												"url": "{{baseUrl}}/api/plant/v1"
 											},
 											"status": "Internal Server Error",
 											"code": 500,
@@ -1200,7 +1043,7 @@
 									]
 								},
 								{
-									"name": "Changes 'in house' property from a specific Plant by id Copy",
+									"name": "Changes 'in house' property from a specific Plant by Id",
 									"request": {
 										"method": "PATCH",
 										"header": [
@@ -1219,18 +1062,7 @@
 												"type": "text"
 											}
 										],
-										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1/2",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"plant",
-												"v1",
-												"2"
-											]
-										},
+										"url": "{{baseUrl}}/api/plant/v1/2",
 										"description": "Changes 'in house' property from a specific plant by id"
 									},
 									"response": [
@@ -1443,18 +1275,7 @@
 												"disabled": true
 											}
 										],
-										"url": {
-											"raw": "{{baseUrl}}/api/plant/v1/3",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"plant",
-												"v1",
-												"3"
-											]
-										},
+										"url": "{{baseUrl}}/api/plant/v1/3",
 										"description": "Deletes a Plant, by passing Id"
 									},
 									"response": [
@@ -1613,6 +1434,336 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "file/v1",
+					"item": [
+						{
+							"name": "Uploads a File",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/D:/DOWNS/Images/5.jpg"
+										}
+									]
+								},
+								"url": "{{baseUrl}}/api/file/v1/uploadFile",
+								"description": "Adds a new Plant, by passing JSON, XML or YML representation of Plant"
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"reprehenderit_99\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"sunt_6\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  }\n]"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Internal Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Uploads multiple Files",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "files",
+											"type": "file",
+											"src": [
+												"/D:/DOWNS/Images/3bk0cz.jpg",
+												"/D:/DOWNS/Images/5.jpg"
+											]
+										}
+									]
+								},
+								"url": "{{baseUrl}}/api/file/v1/uploadMultipleFiles",
+								"description": "Adds a new Plant, by passing JSON, XML or YML representation of Plant"
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"reprehenderit_99\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"plantedDate\": \"<dateTime>\",\n    \"inHouse\": \"<boolean>\",\n    \"address\": \"<string>\",\n    \"_links\": {\n      \"sunt_6\": {\n        \"href\": \"<string>\",\n        \"hreflang\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"deprecation\": \"<string>\",\n        \"profile\": \"<string>\",\n        \"name\": \"<string>\",\n        \"templated\": \"<boolean>\"\n      }\n    }\n  }\n]"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Internal Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"plantedDate\": \"<dateTime>\",\n  \"inHouse\": \"<boolean>\",\n  \"address\": \"<string>\",\n  \"_links\": {\n    \"aliquip__0d\": {\n      \"href\": \"<string>\",\n      \"hreflang\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\",\n      \"deprecation\": \"<string>\",\n      \"profile\": \"<string>\",\n      \"name\": \"<string>\",\n      \"templated\": \"<boolean>\"\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/plant/v1"
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
 				}
 			]
 		},
@@ -1665,16 +1816,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{baseUrl}}/auth/signin",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"signin"
-							]
-						}
+						"url": "{{baseUrl}}/auth/signin"
 					},
 					"response": [
 						{
@@ -1701,16 +1843,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/signin",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"signin"
-									]
-								}
+								"url": "{{baseUrl}}/auth/signin"
 							},
 							"status": "OK",
 							"code": 200,
@@ -1741,17 +1874,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "{{baseUrl}}/auth/refresh/{{username}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"refresh",
-								"{{username}}"
-							]
-						}
+						"url": "{{baseUrl}}/auth/refresh/{{username}}"
 					},
 					"response": [
 						{
